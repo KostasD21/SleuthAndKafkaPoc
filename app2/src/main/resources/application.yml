@@ -8,7 +8,8 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      ack-mode: BATCH
+      concurrency: 1
+      poll-timeout: 500
+      type: BATCH #The problem lies on this property. If I change it then the trace ID displayed in the logs.
